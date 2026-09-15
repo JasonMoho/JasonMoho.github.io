@@ -16,23 +16,14 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root {
-    color-scheme: light dark;
+    /* Always light: a white page even when the visitor's system is in dark mode. */
+    color-scheme: light;
     --bg: #ffffff;
     --text: #1b1c1e;
     --muted: #52565b;
     --line: #e3e5e8;
     --accent: #1a4d8f;
     --accent-hover: #0f3566;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121417;
-      --text: #e6e7e9;
-      --muted: #aeb3b9;
-      --line: #2b2f35;
-      --accent: #8fb6ec;
-      --accent-hover: #bad2f5;
-    }
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
