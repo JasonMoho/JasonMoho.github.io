@@ -1,128 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Jason Mohoney</title>
-    <style>
-        body {
-            font-family: Avenir Next, sans-serif;
-            line-height: 1.625;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #222;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jason Mohoney</title>
+<meta name="description" content="Jason Mohoney is a postdoc in the Data Systems Group at MIT CSAIL working at the intersection of systems, databases, and artificial intelligence.">
+<link rel="canonical" href="https://jasonmoho.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Jason Mohoney">
+<meta property="og:description" content="Postdoc in the Data Systems Group at MIT CSAIL working at the intersection of systems, databases, and artificial intelligence.">
+<meta property="og:url" content="https://jasonmoho.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --text: #1b1c1e;
+    --muted: #52565b;
+    --line: #e3e5e8;
+    --accent: #1a4d8f;
+    --accent-hover: #0f3566;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121417;
+      --text: #e6e7e9;
+      --muted: #aeb3b9;
+      --line: #2b2f35;
+      --accent: #8fb6ec;
+      --accent-hover: #bad2f5;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    /* Avenir Next ships with macOS and iOS; other systems fall back to their own sans-serif. */
+    font: 400 1.0625rem/1.65 "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  ol, ul { list-style: none; margin: 0; padding: 0; }
 
-        h1 {
-            margin-top: 40px;
-            margin-bottom: 8px;
-            text-align: center;
-            font-size: 2em;
-            font-weight: 600;
-        }
+  .page { max-width: 47rem; margin: 0 auto; padding: clamp(3rem, 8vw, 5.5rem) 1.5rem 4.5rem; }
+  header { text-align: center; margin-bottom: 3rem; }
+  h1 { font-size: clamp(2.1rem, 5.5vw, 2.6rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; margin: 0 0 0.35rem; }
+  .role { color: var(--muted); margin: 0 0 1rem; }
+  .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 1.5rem; font-weight: 500; }
+  .links .email { color: var(--muted); font-weight: 400; }
+  .bio { font-size: 1.125rem; line-height: 1.7; margin: 0; }
+  .bio b { font-weight: 600; }
 
-        h2 {
-            margin-top: 32px;
-            margin-bottom: 12px;
-            text-align: left;
-            font-size: 1.3em;
-            font-weight: 600;
-        }
+  h2 { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 3.5rem 0 1.5rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--line); }
+  .year { font-size: 1rem; font-weight: 600; margin: 2.25rem 0 0.85rem; font-variant-numeric: tabular-nums; }
+  .pub-year:first-of-type .year { margin-top: 0; }
+  .pub { margin: 0 0 1.5rem; }
+  .pub-title { font-weight: 600; line-height: 1.45; }
+  .authors { color: var(--muted); font-size: 0.96875rem; margin-top: 0.2rem; }
+  .authors .me { color: var(--text); font-weight: 600; }
+  .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; margin-top: 0.3rem; font-size: 0.9375rem; }
+  .venue { font-style: italic; }
+  .venue:not(:last-child) { padding-right: 1rem; border-right: 1px solid var(--line); }
+  .meta a { font-weight: 500; }
 
-        p {
-            margin-bottom: 16px;
-            line-height: 1.65;
-        }
-
-        ul {
-            padding-left: 0;
-            margin-bottom: 0;
-        }
-
-        li {
-            text-align: left;
-            list-style-type: none;
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        li::before {
-            color: #000;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        a {
-            color: #4a4eaa;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: #5e60ce;
-            text-decoration: underline;
-        }
-
-        .contact-links {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .contact-links p {
-            margin-bottom: 0;
-        }
-
-    </style>
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; padding: 0.35rem 0; }
+  .row .what { min-width: 0; }
+  .row strong { font-weight: 600; }
+  .row .sep { color: var(--muted); }
+  .row .when { flex: none; color: var(--muted); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @media (max-width: 36rem) {
+    .row { gap: 1rem; }
+    /* Date ranges are too wide to sit beside the role on a phone, so they go underneath. */
+    .rows-stack .row { flex-direction: column; gap: 0; padding: 0.45rem 0; }
+    .rows-stack .when { text-align: left; }
+  }
+</style>
 </head>
 <body>
-<h1>Jason Mohoney</h1>
+<div class="page">
+  <header>
+    <h1>Jason Mohoney</h1>
+    <p class="role">Postdoc, Data Systems Group, MIT CSAIL</p>
+    <ul class="links">
+      <li><a href="https://scholar.google.com/citations?user=MT0bFLcAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://github.com/JasonMoho">GitHub</a></li>
+      <li class="email">mohoney (at) mit.edu</li>
+    </ul>
+  </header>
+  <main>
+    <p class="bio">I am a postdoc in the <a href="https://dsg.csail.mit.edu/">Data Systems Group</a> at MIT advised by <a href="https://people.csail.mit.edu/kraska/">Tim Kraska</a> and <a href="https://people.csail.mit.edu/madden/">Sam Madden</a>. I completed my Ph.D. at UW-Madison advised by <a href="https://thodrek.github.io">Theodoros Rekatsinas</a> and <a href="https://shivaram.org">Shivaram Venkataraman</a>. My research interests lie in the intersection of <b>systems, databases, and artificial intelligence</b>.</p>
 
-<div class="contact-links">
-    <p><a href="https://scholar.google.com/citations?user=MT0bFLcAAAAJ&hl=en">Google Scholar</a>, <a
-            href="https://github.com/JasonMoho">Github</a>, Email: mohoney (at) mit.edu </p>
+    <section id="publications">
+      <h2>Publications</h2>
+      <!-- Newest first. To add a paper, copy an <li class="pub"> block into its year
+           (or copy a whole <div class="pub-year"> block for a new year).
+           Wrap your own name in <strong class="me">. Delete link lines that don't apply. -->
+      <div class="pub-year">
+        <h3 class="year">2026</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://doi.org/10.1145/3786335.3813143">Tressoir: Unifying Online, Offline, and HIL Design and Evolution of Multi-Agent Systems via Interpretable Blueprints</a></div>
+            <div class="authors">Amadou Latyr Ngom, Ziniu Wu, <strong class="me">Jason Mohoney</strong>, James Moore, Alex Zhang, Samuel Madden, Tim Kraska</div>
+            <div class="meta">
+              <span class="venue">CAIS 2026</span>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://openreview.net/forum?id=kvUbdWiVk3">An Analysis Graph for Statistical Genetics Agents</a></div>
+            <div class="authors">Stephen Dorn, <strong class="me">Jason Mohoney</strong>, Tim Kraska, Samuel Madden, Noah Zaitlen, Margaux Hujoel</div>
+            <div class="meta">
+              <span class="venue">BioDMS Workshop @ VLDB 2026</span>
+              <a href="https://openreview.net/pdf?id=kvUbdWiVk3">PDF</a>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://arxiv.org/abs/2606.04755">Archi: Agentic Operations at the CMS Experiment</a></div>
+            <div class="authors">Pietro Lugato, Luca Lavezzo, <strong class="me">Jason Mohoney</strong>, Hasan Ozturk, Muhammad Hassan Ahmed, Juan Pablo Salas, Viphava Ohm, Krittin Phornsiricharoenphant, Gabriele Benelli, Mariarosaria D&#x27;Alfonso, Manasvita Joshi, Warren Nam, Aron Soha, Samantha Sunnarborg, Austin Swinney, Jack Tucker, Dmytro Kovalskyi, Tim Kraska, Christoph Paus</div>
+            <div class="meta">
+              <span class="venue">arXiv preprint</span>
+              <a href="https://arxiv.org/pdf/2606.04755">PDF</a>
+              <a href="https://github.com/archi-physics/archi">Code</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="pub-year">
+        <h3 class="year">2025</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://www.usenix.org/conference/osdi25/presentation/mohoney">Quake: Adaptive Indexing for Vector Search</a></div>
+            <div class="authors"><strong class="me">Jason Mohoney</strong>, Devesh Sarda, Mengze Tang, Shihabur Rahman Chowdhury, Anil Pacaci, Ihab F. Ilyas, Theodoros Rekatsinas, Shivaram Venkataraman</div>
+            <div class="meta">
+              <span class="venue">OSDI 2025</span>
+              <a href="https://www.usenix.org/system/files/osdi25-mohoney.pdf">PDF</a>
+              <a href="https://arxiv.org/abs/2506.03437">arXiv</a>
+              <a href="https://github.com/marius-team/quake">Code</a>
+              <a href="https://www.usenix.org/sites/default/files/conference/protected-files/osdi25_slides_mohoney_jason.pdf">Slides</a>
+              <a href="https://www.youtube.com/watch?v=8YI6DkhwAgo">Video</a>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://search.library.wisc.edu/catalog/9915180707702121">I/O Minimization for Machine Learning Systems</a></div>
+            <div class="authors"><strong class="me">Jason Mohoney</strong></div>
+            <div class="meta">
+              <span class="venue">Ph.D. Thesis, UW-Madison</span>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://arxiv.org/abs/2502.17846">Armada: Memory-Efficient Distributed Training of Large-Scale Graph Neural Networks</a></div>
+            <div class="authors">Roger Waleffe, Devesh Sarda, <strong class="me">Jason Mohoney</strong>, Emmanouil-Vasileios Vlatakis-Gkaragkounis, Theodoros Rekatsinas, Shivaram Venkataraman</div>
+            <div class="meta">
+              <span class="venue">arXiv preprint</span>
+              <a href="https://arxiv.org/pdf/2502.17846">PDF</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="pub-year">
+        <h3 class="year">2024</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://icml.cc/virtual/2024/37139">Optimistic Asynchrony Control: Achieving Synchronous Convergence With Asynchronous Throughput for Embedding Model Training</a></div>
+            <div class="authors">Roger Waleffe, <strong class="me">Jason Mohoney</strong></div>
+            <div class="meta">
+              <span class="venue">WANT Workshop @ ICML 2024</span>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://arxiv.org/abs/2411.00970">Incremental IVF Index Maintenance for Streaming Vector Search</a></div>
+            <div class="authors"><strong class="me">Jason Mohoney</strong>, Anil Pacaci, Shihabur Rahman Chowdhury, Umar Farooq Minhas, Jeffrey Pound, Cedric Renggli, Nima Reyhani, Ihab F. Ilyas, Theodoros Rekatsinas, Shivaram Venkataraman</div>
+            <div class="meta">
+              <span class="venue">arXiv preprint</span>
+              <a href="https://arxiv.org/pdf/2411.00970">PDF</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="pub-year">
+        <h3 class="year">2023</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://doi.org/10.1145/3589777">High-Throughput Vector Similarity Search in Knowledge Graphs</a></div>
+            <div class="authors"><strong class="me">Jason Mohoney</strong>, Anil Pacaci, Shihabur Rahman Chowdhury, Ali Mousavi, Ihab F. Ilyas, Umar Farooq Minhas, Jeffrey Pound, Theodoros Rekatsinas</div>
+            <div class="meta">
+              <span class="venue">SIGMOD 2023, Industry Track</span>
+              <a href="https://arxiv.org/pdf/2304.01926">PDF</a>
+              <a href="https://arxiv.org/abs/2304.01926">arXiv</a>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://doi.org/10.1145/3552326.3567501">MariusGNN: Resource-Efficient Out-of-Core Training of Graph Neural Networks</a></div>
+            <div class="authors">Roger Waleffe, <strong class="me">Jason Mohoney</strong>, Theodoros Rekatsinas, Shivaram Venkataraman</div>
+            <div class="meta">
+              <span class="venue">EuroSys 2023</span>
+              <a href="https://arxiv.org/pdf/2202.02365">PDF</a>
+              <a href="https://arxiv.org/abs/2202.02365">arXiv</a>
+              <a href="https://github.com/marius-team/marius">Code</a>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="http://sites.computer.org/debull/A23june/issue1.htm">Fact Ranking over Large-Scale Knowledge Graphs with Reasoning Embedding Models</a></div>
+            <div class="authors">Hongyu Ren, Ali Mousavi, Anil Pacaci, Shihabur R. Chowdhury, <strong class="me">Jason Mohoney</strong>, Ihab F. Ilyas, Yunyao Li, Theodoros Rekatsinas</div>
+            <div class="meta">
+              <span class="venue">IEEE Data Engineering Bulletin</span>
+              <a href="http://sites.computer.org/debull/A23june/p126.pdf">PDF</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="pub-year">
+        <h3 class="year">2021</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://www.usenix.org/conference/osdi21/presentation/mohoney">Marius: Learning Massive Graph Embeddings on a Single Machine</a></div>
+            <div class="authors"><strong class="me">Jason Mohoney</strong>, Roger Waleffe, Yiheng Xu, Theodoros Rekatsinas, Shivaram Venkataraman</div>
+            <div class="meta">
+              <span class="venue">OSDI 2021</span>
+              <a href="https://www.usenix.org/system/files/osdi21-mohoney.pdf">PDF</a>
+              <a href="https://arxiv.org/abs/2101.08358">arXiv</a>
+              <a href="https://github.com/marius-team/marius">Code</a>
+              <a href="https://www.usenix.org/system/files/osdi21_slides_mohoney.pdf">Slides</a>
+              <a href="https://www.youtube.com/watch?v=XP9kUuipK1A">Video</a>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-title"><a href="https://doi.org/10.14778/3476311.3476338">Demo of Marius: A System for Large-scale Graph Embeddings</a></div>
+            <div class="authors">Anze Xie, Anders Carlsson, <strong class="me">Jason Mohoney</strong>, Roger Waleffe, Shanan Peters, Theodoros Rekatsinas, Shivaram Venkataraman</div>
+            <div class="meta">
+              <span class="venue">VLDB 2021, Demo</span>
+              <a href="https://www.vldb.org/pvldb/vol14/p2759-mohoney.pdf">PDF</a>
+              <a href="https://github.com/marius-team/marius">Code</a>
+              <a href="https://www.youtube.com/watch?v=8-WQ-eJFUEg">Video</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="pub-year">
+        <h3 class="year">2017</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://meetings-archive.aps.org/dpp/2017/cp11/77/">Carbon impurity measurements in the HSX stellarator</a></div>
+            <div class="authors"><strong class="me">J. M. Mohoney</strong>, S. T. A. Kumar, K. M. Likin, D. T. Anderson</div>
+            <div class="meta">
+              <span class="venue">APS Division of Plasma Physics Meeting 2017, Poster</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="rows rows-stack">
+        <li class="row"><span class="what"><strong>Apple</strong><span class="sep"> · </span>Research Internship</span><span class="when">Jun 2022 – Mar 2023<br>Jun 2023 – Mar 2024</span></li>
+        <li class="row"><span class="what"><strong>Orfium</strong><span class="sep"> · </span>SWE Internship</span><span class="when">Jun 2019 – Aug 2019</span></li>
+        <li class="row"><span class="what"><strong>Delphix</strong><span class="sep"> · </span>SWE Internship</span><span class="when">Jun 2018 – May 2019</span></li>
+      </ul>
+    </section>
+
+    <section id="service">
+      <h2>Service</h2>
+      <ul class="rows">
+        <li class="row"><span class="what"><strong>VLDB</strong><span class="sep"> · </span>Program Committee</span><span class="when">2027</span></li>
+        <li class="row"><span class="what"><strong>ICDE</strong><span class="sep"> · </span>Program Committee</span><span class="when">2026</span></li>
+        <li class="row"><span class="what"><strong>VLDB Journal</strong><span class="sep"> · </span>Reviewer</span><span class="when">2025</span></li>
+        <li class="row"><span class="what"><strong>SIGMOD</strong><span class="sep"> · </span>Program Committee</span><span class="when">2025</span></li>
+      </ul>
+    </section>
+
+    <section id="awards">
+      <h2>Awards</h2>
+      <ul class="rows">
+        <li class="row"><span class="what"><a href="https://machinelearning.apple.com/updates/apple-scholars-aiml-2023">Apple Scholar in AI/ML</a></span><span class="when">2023</span></li>
+        <li class="row"><span class="what">DeWitt Undergraduate Scholarship</span><span class="when">2018</span></li>
+        <li class="row"><span class="what">Goldwater Scholarship Honorable Mention</span><span class="when">2018</span></li>
+        <li class="row"><span class="what">Hilldale Undergraduate Research Fellowship</span><span class="when">2017</span></li>
+      </ul>
+    </section>
+  </main>
 </div>
-<p>I am a postdoc in the <a href="https://dsg.csail.mit.edu/">Data Systems Group</a> at MIT advised by <a href="https://people.csail.mit.edu/kraska/">Tim Kraska</a>. I completed my Ph.D. at UW-Madison advised by <a href="https://thodrek.github.io">Theodoros
-    Rekatsinas</a> and <a href="https://shivaram.org">Shivaram Venkataraman</a>. My research interests lie in the intersection of <b>systems, databases, and artificial intelligence</b>.
-
-<h2>Selected Publications</h2>
-<ul>
-    <li>
-        J. Mohoney, D. Sarda, M. Tang, S.R. Chowdhury, A. Pacaci, I.F. Ilyas, T. Rekatsinas, S. Venkataraman | <a href="https://www.usenix.org/conference/osdi25/presentation/mohoney"> Quake: Adaptive Indexing for Vector Search </a> | OSDI 2025
-    </li>
-    <li>J. Mohoney, A. Pacaci, S.R. Chowdhury, A. Mousavi, U.F. Minhas, J. Pound, I.F. Ilyas, T. Rekatsinas | <a href="https://arxiv.org/abs/2304.01926">
-        High-Throughput Vector Similarity Search in Knowledge Graphs</a> | Sigmod Industry Track 2023
-    </li>
-    <li>R. Waleffe, J. Mohoney, T. Rekatsinas, S. Venkataraman | <a href="https://arxiv.org/abs/2202.02365">MariusGNN:
-        Resource-Efficient Out-of-Core Training of Graph Neural Networks</a> | EuroSys 2023
-    </li>
-    <li>J. Mohoney, R. Waleffe, Y. Xu, T. Rekatsinas, S. Venkataraman | <a
-            href="https://www.usenix.org/conference/osdi21/presentation/mohoney">Marius: Learning Massive Graph
-        Embeddings on a Single Machine</a> | OSDI 2021
-    </li>
-</ul>
-
-<h2>Experience</h2>
-<ul>
-    <li>Research Internship | Apple | June 2022 - March 2023, June 2023 - March 2024</li>
-    <li>SWE Internship | Orfium | June 2019 - Aug 2019</li>
-    <li>SWE Internship | Delphix | June 2018 - May 2019</li>
-</ul>
-
-<h2>Service</h2>
-<ul>
-    <li>Program Committee: ICDE 2026</li>
-    <li>Reviewer: VLDB Journal 2025</li>
-    <li>Program Committee: SIGMOD 2025</li>
-</ul>
-
-<h2>Awards</h2>
-<ul>
-    <li><a href="https://machinelearning.apple.com/updates/apple-scholars-aiml-2023"> Apple Scholar in AI/ML</a> - 2023</li>
-    <li>DeWitt Undergraduate Scholarship - 2018</li>
-    <li>Goldwater Scholarship Honorable Mention - 2018</li>
-    <li>Hilldale Undergraduate Research Fellowship - 2017</li>
-</ul>
-
 </body>
 </html>
