@@ -1,0 +1,40 @@
+name: Link check
+
+on:
+  schedule:
+    - cron: "17 13 1 * *"  # 13:17 UTC on the 1st of each month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check every link on the site
+        id: check
+        continue-on-error: true
+        run: python3 .github/scripts/check_links.py
+
+      - name: Add the report to the run summary
+        run: cat link-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Report broken links in an issue
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open_issue=$(gh issue list --state open --search 'in:title "Site link check"' --json number --jq '.[0].number // empty')
+          if [ -n "$open_issue" ]; then
+            gh issue comment "$open_issue" --body-file link-report.md
+          else
+            gh issue create --title "Site link check: broken links found" --body-file link-report.md
+          fi
+
+      - name: Fail the run when links are broken
+        if: steps.check.outcome == 'failure'
+        run: exit 1
