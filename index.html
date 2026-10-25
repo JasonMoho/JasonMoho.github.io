@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jason Mohoney</title>
-<meta name="description" content="Jason Mohoney is a postdoc in the Data Systems Group at MIT CSAIL working at the intersection of systems, databases, and artificial intelligence.">
+<meta name="description" content="Jason Mohoney is a postdoc in the Data Systems Group at MIT CSAIL, affiliated with the CMS experiment at CERN, working on systems, databases, and AI for scientific operations and discovery.">
 <link rel="canonical" href="https://jasonmoho.github.io/">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Jason Mohoney">
-<meta property="og:description" content="Postdoc in the Data Systems Group at MIT CSAIL working at the intersection of systems, databases, and artificial intelligence.">
+<meta property="og:description" content="Postdoc in the Data Systems Group at MIT CSAIL, affiliated with the CMS experiment at CERN. Systems, databases, and AI for scientific operations and discovery.">
 <meta property="og:url" content="https://jasonmoho.github.io/">
 <meta property="og:image" content="https://jasonmoho.github.io/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Jason Mohoney, postdoc in the Data Systems Group at MIT CSAIL">
+<meta property="og:image:alt" content="Jason Mohoney, postdoc in the Data Systems Group at MIT CSAIL, affiliated with the CMS Experiment at CERN">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -22,11 +22,18 @@
   "name": "Jason Mohoney",
   "url": "https://jasonmoho.github.io/",
   "jobTitle": "Postdoc",
-  "affiliation": {
-    "@type": "Organization",
-    "name": "MIT Computer Science and Artificial Intelligence Laboratory",
-    "url": "https://dsg.csail.mit.edu/"
-  },
+  "affiliation": [
+    {
+      "@type": "Organization",
+      "name": "MIT Computer Science and Artificial Intelligence Laboratory",
+      "url": "https://dsg.csail.mit.edu/"
+    },
+    {
+      "@type": "Organization",
+      "name": "CMS Experiment at CERN",
+      "url": "https://cms.cern/"
+    }
+  ],
   "alumniOf": {
     "@type": "CollegeOrUniversity",
     "name": "University of Wisconsin-Madison",
@@ -35,7 +42,8 @@
   "knowsAbout": [
     "Systems",
     "Databases",
-    "Artificial intelligence"
+    "Artificial intelligence",
+    "AI for scientific operations and discovery"
   ],
   "sameAs": [
     "https://scholar.google.com/citations?user=MT0bFLcAAAAJ&hl=en",
@@ -64,8 +72,8 @@
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    /* Avenir Next ships with macOS and iOS; other systems fall back to their own sans-serif. */
-    font: 400 1.0625rem/1.65 "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* Each device's own interface font: San Francisco on Apple, Segoe UI on Windows, Roboto on Android. */
+    font: 400 1.0625rem/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--accent); text-decoration: none; }
@@ -81,10 +89,12 @@
   .links .email { color: var(--muted); font-weight: 400; }
   .bio { font-size: 1.125rem; line-height: 1.7; margin: 0; }
   .bio b { font-weight: 600; }
+  /* Links inside running text need more than color to stand out, so they get a faint underline. */
+  .bio a { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: rgba(26, 77, 143, 0.35); text-underline-offset: 0.18em; }
+  .bio a:hover { text-decoration-color: currentColor; }
 
   h2 { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 3.5rem 0 1.5rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--line); }
-  .year { font-size: 1rem; font-weight: 600; margin: 2.25rem 0 0.85rem; font-variant-numeric: tabular-nums; }
-  .pub-year:first-of-type .year { margin-top: 0; }
+  .year { font-size: 1rem; font-weight: 600; margin: 0 0 0.85rem; font-variant-numeric: tabular-nums; }
   .pub { margin: 0 0 1.5rem; }
   .pub-title { font-weight: 600; line-height: 1.45; }
   .authors { color: var(--muted); font-size: 0.96875rem; margin-top: 0.2rem; }
@@ -93,6 +103,40 @@
   .venue { font-style: italic; }
   .venue:not(:last-child) { padding-right: 1rem; border-right: 1px solid var(--line); }
   .meta a { font-weight: 500; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; }
+  .project { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; padding: 1.5rem 1.5rem 1.25rem; border: 1px solid var(--line); border-radius: 10px; transition: border-color 0.15s, box-shadow 0.15s; }
+  .project:hover { border-color: #c5d2e3; box-shadow: 0 2px 10px rgba(26, 77, 143, 0.07); }
+  .project-art { flex: none; width: 3.5rem; height: 3.5rem; }
+  /* The body fills the card's height so each card's links sit on the same line. */
+  .project-body { min-width: 0; flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .project-name { font-size: 1.0625rem; font-weight: 600; line-height: 1.45; margin: 0 0 0.2rem; }
+  .project-desc { color: var(--muted); font-size: 0.96875rem; line-height: 1.65; margin: 0 0 0.6rem; }
+  .project .meta { margin-top: auto; justify-content: center; }
+
+  .pub-filter { display: inline-flex; margin: 0 0 1.75rem; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
+  .pub-filter button { font: inherit; font-size: 0.875rem; font-weight: 500; color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 0.3rem 1rem; cursor: pointer; }
+  .pub-filter button:hover { color: var(--text); }
+  .pub-filter button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .pub-filter button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* The list spaces the years itself, so hiding a year in the Selected view leaves no gap. */
+  /* 0.75rem plus each paper's 1.5rem bottom margin gives the original 2.25rem between years. */
+  .pub-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .show-selected .pub:not(.selected),
+  .show-selected .pub-year:not(:has(.selected)) { display: none; }
+
+  footer { margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; text-align: center; }
+
+  @media print {
+    /* Print every paper, in black, without the interactive pieces. */
+    :root { --muted: #333; --accent: #000; }
+    .page { padding: 0; max-width: none; }
+    .pub-filter { display: none !important; }
+    .show-selected .pub, .show-selected .pub-year { display: block !important; }
+    .project { break-inside: avoid; box-shadow: none; }
+    .pub, .row { break-inside: avoid; }
+    h2 { break-after: avoid; }
+  }
 
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; padding: 0.35rem 0; }
   .row .what { min-width: 0; }
@@ -111,7 +155,7 @@
 <div class="page">
   <header>
     <h1>Jason Mohoney</h1>
-    <p class="role">Postdoc, Data Systems Group, MIT CSAIL</p>
+    <p class="role">Postdoc, Data Systems Group, MIT CSAIL<br>Affiliated with the CMS Experiment, CERN</p>
     <ul class="links">
       <li><a href="https://scholar.google.com/citations?user=MT0bFLcAAAAJ&amp;hl=en">Google Scholar</a></li>
       <li><a href="https://github.com/JasonMoho">GitHub</a></li>
@@ -119,16 +163,71 @@
     </ul>
   </header>
   <main>
-    <p class="bio">I am a postdoc in the <a href="https://dsg.csail.mit.edu/">Data Systems Group</a> at MIT advised by <a href="https://people.csail.mit.edu/kraska/">Tim Kraska</a> and <a href="https://people.csail.mit.edu/madden/">Sam Madden</a>. I completed my Ph.D. at UW-Madison advised by <a href="https://thodrek.github.io">Theodoros Rekatsinas</a> and <a href="https://shivaram.org">Shivaram Venkataraman</a>. My research interests lie in the intersection of <b>systems, databases, and artificial intelligence</b>.</p>
+    <p class="bio">I am a postdoc in the <a href="https://dsg.csail.mit.edu/">Data Systems Group</a> at MIT advised by <a href="https://people.csail.mit.edu/kraska/">Tim Kraska</a> and <a href="https://people.csail.mit.edu/madden/">Sam Madden</a>. I completed my Ph.D. at UW-Madison advised by <a href="https://thodrek.github.io">Theodoros Rekatsinas</a> and <a href="https://shivaram.org">Shivaram Venkataraman</a>. I am also affiliated with the <a href="https://cms.cern/">CMS experiment</a> at CERN. My research interests lie in the intersection of <b>systems, databases, and artificial intelligence</b>, and I am especially interested in AI for scientific operations and discovery.</p>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul class="projects">
+        <li class="project">
+          <!-- A small knowledge graph: one highlighted node linked to the rest. -->
+          <svg class="project-art" viewBox="3 6 54 54" aria-hidden="true">
+            <g stroke="#9db3d1" stroke-width="1.6">
+              <line x1="32" y1="32" x2="14" y2="16"/><line x1="32" y1="32" x2="50" y2="14"/>
+              <line x1="32" y1="32" x2="52" y2="42"/><line x1="32" y1="32" x2="18" y2="50"/>
+              <line x1="14" y1="16" x2="50" y2="14"/><line x1="52" y1="42" x2="38" y2="54"/>
+              <line x1="18" y1="50" x2="38" y2="54"/><line x1="14" y1="16" x2="8" y2="36"/>
+              <line x1="8" y1="36" x2="18" y2="50"/>
+            </g>
+            <g fill="#ffffff" stroke="#1a4d8f" stroke-width="1.8">
+              <circle cx="14" cy="16" r="4"/><circle cx="50" cy="14" r="4"/><circle cx="52" cy="42" r="4"/>
+              <circle cx="18" cy="50" r="4"/><circle cx="38" cy="54" r="3.2"/><circle cx="8" cy="36" r="3.2"/>
+            </g>
+            <circle cx="32" cy="32" r="7" fill="#1a4d8f"/>
+          </svg>
+          <div class="project-body">
+            <h3 class="project-name"><a href="https://github.com/mitdbg/akmon">Akmon and OKGs</a></h3>
+            <p class="project-desc">Operational knowledge graphs (OKGs): consistent, versioned knowledge bases of an organization's data.</p>
+            <div class="meta"><a href="https://github.com/mitdbg/akmon">Code</a></div>
+          </div>
+        </li>
+        <li class="project">
+          <img class="project-art" src="images/archi.png" alt="" width="64" height="64">
+          <div class="project-body">
+            <h3 class="project-name"><a href="https://archi-physics.github.io/archi/">Archi</a></h3>
+            <p class="project-desc">Agentic operations at the CMS experiment, in use by CMS Computing Operations.</p>
+            <div class="meta">
+              <a href="https://archi-physics.github.io/archi/">Website</a>
+              <a href="https://github.com/archi-physics/archi">Code</a>
+              <a href="https://arxiv.org/abs/2606.04755">Paper</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
 
     <section id="publications">
       <h2>Publications</h2>
       <!-- Newest first. To add a paper, copy an <li class="pub"> block into its year
            (or copy a whole <div class="pub-year"> block for a new year).
-           Wrap your own name in <strong class="me">. Delete link lines that don't apply. -->
+           Wrap your own name in <strong class="me">. Delete link lines that don't apply.
+           Add "selected" to a paper's class to show it in the default Selected view. -->
+      <!-- Hidden until the script runs, so visitors without JavaScript see every paper. -->
+      <div class="pub-filter" role="group" aria-label="Which publications to show" hidden>
+        <button type="button" data-show="selected" aria-pressed="true">Selected</button>
+        <button type="button" data-show="all" aria-pressed="false">All</button>
+      </div>
+      <div class="pub-list">
       <div class="pub-year">
         <h3 class="year">2026</h3>
         <ol class="pubs">
+          <li class="pub">
+            <div class="pub-title"><a href="https://arxiv.org/abs/2610.00037">Guarded Commits: Transactional Human Approvals for LLM Workflows</a></div>
+            <div class="authors">Laurent Bindschaedler, Ferdi Kossmann, Chunwei Liu, <strong class="me">Jason Mohoney</strong></div>
+            <div class="meta">
+              <span class="venue">arXiv preprint</span>
+              <a href="https://arxiv.org/pdf/2610.00037">PDF</a>
+            </div>
+          </li>
           <li class="pub">
             <div class="pub-title"><a href="https://doi.org/10.1145/3786335.3813143">Tressoir: Unifying Online, Offline, and HIL Design and Evolution of Multi-Agent Systems via Interpretable Blueprints</a></div>
             <div class="authors">Amadou Latyr Ngom, Ziniu Wu, <strong class="me">Jason Mohoney</strong>, James Moore, Alex Zhang, Samuel Madden, Tim Kraska</div>
@@ -152,14 +251,15 @@
               <a href="https://arxiv.org/pdf/2609.14889">PDF</a>
             </div>
           </li>
-          <li class="pub">
+          <li class="pub selected">
             <div class="pub-title"><a href="https://arxiv.org/abs/2606.04755">Archi: Agentic Operations at the CMS Experiment</a></div>
             <!-- Lists longer than about eight names are trimmed to the first three plus "et al.";
            the full list stays in the title attribute and on the linked paper page. -->
             <div class="authors" title="Pietro Lugato, Luca Lavezzo, Jason Mohoney, Hasan Ozturk, Muhammad Hassan Ahmed, Juan Pablo Salas, Viphava Ohm, Krittin Phornsiricharoenphant, Gabriele Benelli, Mariarosaria D&#x27;Alfonso, Manasvita Joshi, Warren Nam, Aron Soha, Samantha Sunnarborg, Austin Swinney, Jack Tucker, Dmytro Kovalskyi, Tim Kraska, Christoph Paus">Pietro Lugato, Luca Lavezzo, <strong class="me">Jason Mohoney</strong>, et al.</div>
             <div class="meta">
-              <span class="venue">arXiv preprint</span>
+              <span class="venue">CHEP 2026</span>
               <a href="https://arxiv.org/pdf/2606.04755">PDF</a>
+              <a href="https://arxiv.org/abs/2606.04755">arXiv</a>
               <a href="https://github.com/archi-physics/archi">Code</a>
             </div>
           </li>
@@ -168,7 +268,7 @@
       <div class="pub-year">
         <h3 class="year">2025</h3>
         <ol class="pubs">
-          <li class="pub">
+          <li class="pub selected">
             <div class="pub-title"><a href="https://www.usenix.org/conference/osdi25/presentation/mohoney">Quake: Adaptive Indexing for Vector Search</a></div>
             <div class="authors"><strong class="me">Jason Mohoney</strong>, Devesh Sarda, Mengze Tang, Shihabur Rahman Chowdhury, Anil Pacaci, Ihab F. Ilyas, Theodoros Rekatsinas, Shivaram Venkataraman</div>
             <div class="meta">
@@ -220,7 +320,7 @@
       <div class="pub-year">
         <h3 class="year">2023</h3>
         <ol class="pubs">
-          <li class="pub">
+          <li class="pub selected">
             <div class="pub-title"><a href="https://doi.org/10.1145/3589777">High-Throughput Vector Similarity Search in Knowledge Graphs</a></div>
             <div class="authors"><strong class="me">Jason Mohoney</strong>, Anil Pacaci, Shihabur Rahman Chowdhury, Ali Mousavi, Ihab F. Ilyas, Umar Farooq Minhas, Jeffrey Pound, Theodoros Rekatsinas</div>
             <div class="meta">
@@ -229,7 +329,7 @@
               <a href="https://arxiv.org/abs/2304.01926">arXiv</a>
             </div>
           </li>
-          <li class="pub">
+          <li class="pub selected">
             <div class="pub-title"><a href="https://doi.org/10.1145/3552326.3567501">MariusGNN: Resource-Efficient Out-of-Core Training of Graph Neural Networks</a></div>
             <div class="authors">Roger Waleffe, <strong class="me">Jason Mohoney</strong>, Theodoros Rekatsinas, Shivaram Venkataraman</div>
             <div class="meta">
@@ -252,7 +352,7 @@
       <div class="pub-year">
         <h3 class="year">2021</h3>
         <ol class="pubs">
-          <li class="pub">
+          <li class="pub selected">
             <div class="pub-title"><a href="https://www.usenix.org/conference/osdi21/presentation/mohoney">Marius: Learning Massive Graph Embeddings on a Single Machine</a></div>
             <div class="authors"><strong class="me">Jason Mohoney</strong>, Roger Waleffe, Yiheng Xu, Theodoros Rekatsinas, Shivaram Venkataraman</div>
             <div class="meta">
@@ -288,6 +388,7 @@
           </li>
         </ol>
       </div>
+      </div>
     </section>
 
     <section id="experience">
@@ -303,6 +404,7 @@
       <h2>Service</h2>
       <ul class="rows">
         <li class="row"><span class="what"><strong>VLDB</strong><span class="sep"> · </span>Program Committee</span><span class="when">2027</span></li>
+        <li class="row"><span class="what"><a href="https://indico.cern.ch/event/1716863/"><strong>Knowledge Bases and Agents Workshop, CERN</strong></a><span class="sep"> · </span>Organizer</span><span class="when">2026</span></li>
         <li class="row"><span class="what"><strong>ICDE</strong><span class="sep"> · </span>Program Committee</span><span class="when">2026</span></li>
         <li class="row"><span class="what"><strong>VLDB Journal</strong><span class="sep"> · </span>Reviewer</span><span class="when">2025</span></li>
         <li class="row"><span class="what"><strong>SIGMOD</strong><span class="sep"> · </span>Program Committee</span><span class="when">2025</span></li>
@@ -319,6 +421,22 @@
       </ul>
     </section>
   </main>
+  <footer>Last updated October 2026</footer>
 </div>
+<script>
+  // Publications open on the Selected view; the buttons switch between Selected and All.
+  (function () {
+    var section = document.getElementById('publications');
+    var filter = section.querySelector('.pub-filter');
+    var buttons = filter.querySelectorAll('button');
+    function show(which) {
+      section.classList.toggle('show-selected', which === 'selected');
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.show === which)); });
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.show); }); });
+    filter.hidden = false;
+    show('selected');
+  })();
+</script>
 </body>
 </html>
