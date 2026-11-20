@@ -104,15 +104,58 @@
   .venue:not(:last-child) { padding-right: 1rem; border-right: 1px solid var(--line); }
   .meta a { font-weight: 500; }
 
-  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; }
-  .project { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; padding: 1.5rem 1.5rem 1.25rem; border: 1px solid var(--line); border-radius: 10px; transition: border-color 0.15s, box-shadow 0.15s; }
-  .project:hover { border-color: #c5d2e3; box-shadow: 0 2px 10px rgba(26, 77, 143, 0.07); }
-  .project-art { flex: none; width: 3.5rem; height: 3.5rem; }
-  /* The body fills the card's height so each card's links sit on the same line. */
-  .project-body { min-width: 0; flex: 1; display: flex; flex-direction: column; align-items: center; }
-  .project-name { font-size: 1.0625rem; font-weight: 600; line-height: 1.45; margin: 0 0 0.2rem; }
-  .project-desc { color: var(--muted); font-size: 0.96875rem; line-height: 1.65; margin: 0 0 0.6rem; }
-  .project .meta { margin-top: auto; justify-content: center; }
+  /* A stack diagram: three projects stand on the Akmon slab. Akmon comes first in the
+     markup and is drawn last, so screen readers meet the foundation first. */
+  .stack { display: flex; flex-direction: column-reverse; --art-h: 6.25rem; }
+  .stack-apps { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+  /* A bracket gathers the three projects into one line that runs down into Akmon. */
+  .built-on { position: relative; height: 2.75rem; }
+  .built-on::before { content: ""; position: absolute; left: 16.667%; right: 16.667%; top: 0; height: 50%; border: 1.5px solid var(--accent); border-top: 0; border-radius: 0 0 7px 7px; }
+  .built-on::after { content: ""; position: absolute; left: calc(50% - 0.75px); top: 0; bottom: 0; border-left: 1.5px solid var(--accent); }
+  .built-on span { position: absolute; left: calc(50% + 0.75rem); bottom: 0.2rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .app { display: flex; flex-direction: column; padding: 0.5rem 1.1rem 1.1rem; border-left: 1px solid var(--line); }
+  .app:last-child { border-right: 1px solid var(--line); }
+  .app-art { display: flex; justify-content: center; align-items: center; height: var(--art-h); margin-bottom: 1rem; }
+  .app-art > img, .app-art > svg { display: block; height: 100%; width: auto; }
+  /* Verso shows three paintings hung together: one tall, two wide. */
+  .hang { display: flex; gap: 5px; height: 100%; }
+  .hang-col { display: flex; flex-direction: column; gap: 5px; }
+  .hang img { display: block; width: auto; outline: 1px solid rgba(27, 28, 30, 0.2); outline-offset: -1px; }
+  .hang > img { height: var(--art-h); }
+  .hang-col img { height: calc((var(--art-h) - 5px) / 2); }
+  .app-body { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  /* Line drawings share one pen: blue outlines, white fills, amber for the thing being flagged. */
+  .art { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ink { stroke: var(--accent); }
+  .soft { stroke: #9db3d1; }
+  .flag { stroke: #c26a1a; }
+  .paper { fill: #fff; }
+  .dot { fill: var(--accent); stroke: none; }
+  .flag-dot { fill: #c26a1a; stroke: none; }
+  .tint-row { fill: #fbe7c6; stroke: none; }
+  .plate-1 { fill: #dde7f3; } .plate-2 { fill: #ecf1f8; }
+  .art text.num { fill: #8f4a0c; font-weight: 700; font-size: 10.5px; }
+  .art text { fill: var(--muted); stroke: none; font: 500 9px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .stack-base { display: flex; align-items: center; justify-content: center; gap: 1.75rem; background: #f1f5fa; border-top: 2px solid var(--accent); padding: 1.1rem 1.25rem 1.2rem; }
+  .base-art { flex: none; height: var(--art-h); }
+  .base-art svg { display: block; height: 100%; width: auto; }
+  .proj-name { font-size: 1.0625rem; font-weight: 600; line-height: 1.45; margin: 0; }
+  .proj-desc { color: var(--muted); font-size: 0.9375rem; line-height: 1.55; margin: 0.25rem 0 0.6rem; }
+  .stack-base .proj-desc { max-width: 25rem; margin-bottom: 0.4rem; }
+  .stack .meta { margin-top: auto; }
+  .stack .soon { color: var(--muted); }
+  @media (max-width: 40rem) {
+    /* On a phone the three projects pile up, picture beside text, still resting on Akmon. */
+    .stack { --art-h: 4rem; }
+    .stack-apps { grid-template-columns: 1fr; }
+    .built-on { height: 2.25rem; }
+    .built-on::before { display: none; }
+    .app { flex-direction: row; align-items: center; gap: 1rem; padding: 1rem; border-right: 1px solid var(--line); border-top: 1px solid var(--line); }
+    .app-art { flex: none; width: 6.25rem; margin: 0; }
+    .stack-base { justify-content: flex-start; gap: 1rem; padding: 1rem; border-left: 1px solid transparent; border-right: 1px solid transparent; }
+    .base-art { width: 6.25rem; height: auto; }
+    .base-art svg { width: 100%; height: auto; }
+  }
 
   .pub-filter { display: inline-flex; margin: 0 0 1.75rem; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
   .pub-filter button { font: inherit; font-size: 0.875rem; font-weight: 500; color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 0.3rem 1rem; cursor: pointer; }
@@ -133,7 +176,7 @@
     .page { padding: 0; max-width: none; }
     .pub-filter { display: none !important; }
     .show-selected .pub, .show-selected .pub-year { display: block !important; }
-    .project { break-inside: avoid; box-shadow: none; }
+    .stack { break-inside: avoid; }
     .pub, .row { break-inside: avoid; }
     h2 { break-after: avoid; }
   }
@@ -155,7 +198,7 @@
 <div class="page">
   <header>
     <h1>Jason Mohoney</h1>
-    <p class="role">Postdoc, Data Systems Group, MIT CSAIL<br>Affiliated with the CMS Experiment, CERN</p>
+    <p class="role">Postdoc, Data Systems Group, MIT CSAIL</p>
     <ul class="links">
       <li><a href="https://scholar.google.com/citations?user=MT0bFLcAAAAJ&amp;hl=en">Google Scholar</a></li>
       <li><a href="https://github.com/JasonMoho">GitHub</a></li>
@@ -163,46 +206,87 @@
     </ul>
   </header>
   <main>
-    <p class="bio">I am a postdoc in the <a href="https://dsg.csail.mit.edu/">Data Systems Group</a> at MIT advised by <a href="https://people.csail.mit.edu/kraska/">Tim Kraska</a> and <a href="https://people.csail.mit.edu/madden/">Sam Madden</a>. I completed my Ph.D. at UW-Madison advised by <a href="https://thodrek.github.io">Theodoros Rekatsinas</a> and <a href="https://shivaram.org">Shivaram Venkataraman</a>. I am also affiliated with the <a href="https://cms.cern/">CMS experiment</a> at CERN. My research interests lie in the intersection of <b>systems, databases, and artificial intelligence</b>, and I am especially interested in AI for scientific operations and discovery.</p>
+    <p class="bio">I am a postdoc in the <a href="https://dsg.csail.mit.edu/">Data Systems Group</a> at MIT, advised by <a href="https://people.csail.mit.edu/kraska/">Tim Kraska</a> and <a href="https://people.csail.mit.edu/madden/">Sam Madden</a>, and I am affiliated with the <a href="https://cms.cern/">CMS experiment</a> at CERN. I work on building knowledge bases that stay consistent as an organization's data changes. My current work centers on <a href="https://github.com/mitdbg/akmon">Akmon</a> and the applications built on it. I completed my Ph.D. at UW-Madison, advised by <a href="https://thodrek.github.io">Theodoros Rekatsinas</a> and <a href="https://shivaram.org">Shivaram Venkataraman</a>, where I built systems for graph learning and vector search, including <a href="https://github.com/marius-team/marius">Marius</a> and <a href="https://github.com/marius-team/quake">Quake</a>.</p>
 
     <section id="projects">
       <h2>Projects</h2>
-      <ul class="projects">
-        <li class="project">
-          <!-- A small knowledge graph: one highlighted node linked to the rest. -->
-          <svg class="project-art" viewBox="3 6 54 54" aria-hidden="true">
-            <g stroke="#9db3d1" stroke-width="1.6">
-              <line x1="32" y1="32" x2="14" y2="16"/><line x1="32" y1="32" x2="50" y2="14"/>
-              <line x1="32" y1="32" x2="52" y2="42"/><line x1="32" y1="32" x2="18" y2="50"/>
-              <line x1="14" y1="16" x2="50" y2="14"/><line x1="52" y1="42" x2="38" y2="54"/>
-              <line x1="18" y1="50" x2="38" y2="54"/><line x1="14" y1="16" x2="8" y2="36"/>
-              <line x1="8" y1="36" x2="18" y2="50"/>
-            </g>
-            <g fill="#ffffff" stroke="#1a4d8f" stroke-width="1.8">
-              <circle cx="14" cy="16" r="4"/><circle cx="50" cy="14" r="4"/><circle cx="52" cy="42" r="4"/>
-              <circle cx="18" cy="50" r="4"/><circle cx="38" cy="54" r="3.2"/><circle cx="8" cy="36" r="3.2"/>
-            </g>
-            <circle cx="32" cy="32" r="7" fill="#1a4d8f"/>
-          </svg>
-          <div class="project-body">
-            <h3 class="project-name"><a href="https://github.com/mitdbg/akmon">Akmon and OKGs</a></h3>
-            <p class="project-desc">Operational knowledge graphs (OKGs): consistent, versioned knowledge bases of an organization's data.</p>
+      <div class="stack">
+        <div class="stack-base">
+          <!-- Graph versions stacked like strata: each publish adds a complete new layer and leaves the old ones intact. -->
+          <div class="base-art">
+            <svg class="art" viewBox="0 0 152 96" aria-hidden="true">
+              <path class="soft plate-1" d="M8 68 70 48 132 68 70 88Z"/>
+              <path class="soft plate-2" d="M8 48 70 28 132 48 70 68Z"/>
+              <path class="ink paper" d="M8 28 70 8 132 28 70 48Z"/>
+              <path class="soft" d="M36 28 60 19M60 19 102 27M60 19 76 36M76 36 102 27M36 28 54 35M54 35 76 36"/>
+              <g class="ink paper"><circle cx="36" cy="28" r="3.2"/><circle cx="60" cy="19" r="3.2"/><circle cx="102" cy="27" r="3.2"/><circle cx="54" cy="35" r="3.2"/></g>
+              <circle class="dot" cx="76" cy="36" r="3.8"/>
+              <text x="137" y="31">v3</text><text x="137" y="51">v2</text><text x="137" y="71">v1</text>
+            </svg>
+          </div>
+          <div class="stack-base-text">
+            <h3 class="proj-name"><a href="https://github.com/mitdbg/akmon">Akmon</a></h3>
+            <p class="proj-desc">Builds and maintains consistent, versioned knowledge bases from an organization's changing data sources.</p>
             <div class="meta"><a href="https://github.com/mitdbg/akmon">Code</a></div>
           </div>
-        </li>
-        <li class="project">
-          <img class="project-art" src="images/archi.png" alt="" width="64" height="64">
-          <div class="project-body">
-            <h3 class="project-name"><a href="https://archi-physics.github.io/archi/">Archi</a></h3>
-            <p class="project-desc">Agentic operations at the CMS experiment, in use by CMS Computing Operations.</p>
-            <div class="meta">
-              <a href="https://archi-physics.github.io/archi/">Website</a>
-              <a href="https://github.com/archi-physics/archi">Code</a>
-              <a href="https://arxiv.org/abs/2606.04755">Paper</a>
+        </div>
+        <div class="built-on" aria-hidden="true"><span>Built on</span></div>
+        <ul class="stack-apps" aria-label="Built on Akmon">
+          <li class="app">
+            <div class="app-art"><img src="images/archi.png" alt="" width="192" height="192"></div>
+            <div class="app-body">
+              <h3 class="proj-name"><a href="https://archi-physics.github.io/archi/">Archi</a></h3>
+              <p class="proj-desc">Agentic operations at the CMS experiment, in use by CMS Computing Operations.</p>
+              <div class="meta">
+                <a href="https://archi-physics.github.io/archi/">Website</a>
+                <a href="https://github.com/archi-physics/archi">Code</a>
+                <a href="https://arxiv.org/abs/2606.04755">Paper</a>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+          <li class="app">
+            <!-- Three works whose records Verso holds. Public-domain reproductions from Wikimedia Commons. -->
+            <div class="app-art">
+              <div class="hang">
+                <img src="images/verso-vermeer.jpg" width="330" height="392" alt="Johannes Vermeer, The Art of Painting">
+                <div class="hang-col">
+                  <img src="images/verso-sisley.jpg" width="330" height="246" alt="Alfred Sisley, Avenue of Poplars near Moret-sur-Loing">
+                  <img src="images/verso-boucher.jpg" width="330" height="251" alt="François Boucher, The Forest">
+                </div>
+              </div>
+            </div>
+            <div class="app-body">
+              <h3 class="proj-name"><a href="https://almagest.128-52-138-205.sslip.io/provenance">Verso</a></h3>
+              <p class="proj-desc">Art provenance knowledge base of 1.9 million records from 23 sources.</p>
+              <div class="meta"><a href="https://almagest.128-52-138-205.sslip.io/provenance">Demo</a></div>
+            </div>
+          </li>
+          <li class="app">
+            <!-- Two documents state the same figure differently: a table on the left, a report on the right, and a "not equal" mark between them. -->
+            <div class="app-art">
+              <svg class="art" viewBox="0 0 134 96" aria-hidden="true">
+                <rect class="ink paper" x="4" y="6" width="52" height="84"/>
+                <rect class="ink paper" x="78" y="6" width="52" height="84"/>
+                <rect class="tint-row" x="8" y="43" width="44" height="16"/>
+                <rect class="tint-row" x="82" y="43" width="44" height="16"/>
+                <path class="soft" d="M11 17H34M11 28H30M40 28H49M11 36H26M40 36H49M11 67H32M40 67H49M11 75H27M40 75H49M11 83H30M40 83H49"/>
+                <path class="soft" d="M85 17H108M85 28H123M85 36H118M85 67H123M85 75H121M85 83H104"/>
+                <path class="flag" d="M11 51H24M85 51H98"/>
+                <text class="num" x="49" y="54.6" text-anchor="end">4.2</text>
+                <text class="num" x="123" y="54.6" text-anchor="end">4.7</text>
+                <path class="flag" d="M56 51H58M76 51H78"/>
+                <circle class="flag paper" cx="67" cy="51" r="9"/>
+                <path class="flag" stroke-width="1.8" d="M62.5 48.3H71.5M62.5 53.7H71.5M70 45.3 64 56.7"/>
+              </svg>
+            </div>
+            <div class="app-body">
+              <h3 class="proj-name">Concord</h3>
+              <p class="proj-desc">Incremental consistency checking for unstructured data.</p>
+              <div class="meta"><span class="soon">Coming soon</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <section id="publications">
@@ -421,7 +505,7 @@
       </ul>
     </section>
   </main>
-  <footer>Last updated October 2026</footer>
+  <footer>Last updated November 2026</footer>
 </div>
 <script>
   // Publications open on the Selected view; the buttons switch between Selected and All.
